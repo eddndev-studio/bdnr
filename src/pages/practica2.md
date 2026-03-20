@@ -173,57 +173,6 @@ RFC             PERSONA                        RESULT
 CACM871109LI8   Martha Carbajal Carbajal       <comprobante>titulo profesional</comprobante>
 ```
 
-**Consulta 13: Contar cuántos empleados empiezan o terminan con consonante su nombre**
-```sql
-SELECT COUNT(*) AS total_consonante_inicio_o_fin
-FROM empleados_xml e,
-     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
-              COLUMNS nombre VARCHAR2(50) PATH 'nombre'
-             ) x
-WHERE REGEXP_LIKE(TRIM(x.nombre), '^[^AEIOUaeiouÁÉÍÓÚáéíóú]')
-   OR REGEXP_LIKE(TRIM(x.nombre), '[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
-```
-```text
-TOTAL_CONSONANTE_INICIO_O_FIN
------------------------------
-                            9
-```
-*Explicación:* Se usa `XMLTable` para extraer los nombres del documento XML y `REGEXP_LIKE` con un `OR` para capturar nombres que cumplan al menos una condición. Los 9 empleados califican ya que todos inician con consonante (Jesús=J, Guadalupe=G, Julia=J, Mario=M, Rogelio=R, Bruce=B, Laura=L, Sandra=S, Guadalupe=G). Se incluyen las vocales acentuadas (ÁÉÍÓÚáéíóú) en la exclusión para manejar correctamente nombres en español.
-
-**Consulta 14: Contar cuántos empleados empiezan y terminan con consonante su nombre**
-```sql
-SELECT COUNT(*) AS total_consonante_inicio_y_fin
-FROM empleados_xml e,
-     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
-              COLUMNS nombre VARCHAR2(50) PATH 'nombre'
-             ) x
-WHERE REGEXP_LIKE(TRIM(x.nombre), '^[^AEIOUaeiouÁÉÍÓÚáéíóú].*[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
-```
-```text
-TOTAL_CONSONANTE_INICIO_Y_FIN
------------------------------
-                            1
-```
-*Explicación:* A diferencia de la anterior, aquí se exige que ambas condiciones se cumplan simultáneamente en una sola expresión regular. Solo **Jesús** (J...s) cumple, ya que es el único nombre que tanto empieza como termina con consonante.
-
-**Consulta 15: Mostrar el NSS de los empleados cuyo nombre termina con consonante**
-```sql
-SELECT x.nss, x.nombre
-FROM empleados_xml e,
-     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
-              COLUMNS
-                nss VARCHAR2(20) PATH '@NSS',
-                nombre VARCHAR2(50) PATH 'nombre'
-             ) x
-WHERE REGEXP_LIKE(TRIM(x.nombre), '[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
-```
-```text
-NSS                  NOMBRE
--------------------- --------------------------------------------------
-777888999            Jesús
-```
-*Explicación:* Se proyecta el NSS (identificador del empleado en el XML, definido como atributo `@NSS`) junto con el nombre. Solo **Jesús** termina en consonante ('s').
-
 ---
 
 ## 5. Manejo de Archivos XML Externos (Sección 3.2)
@@ -1269,4 +1218,55 @@ EASTWOOD ACADEMY                                                98 65.1%        
 PREPARATORY FOR EARLY COLLEGE H S                               97 96.6%                    78.82
 SOUTH PALM GARDENS H S                                          97 92.3%                    78.82
 ```
+
+**Actividad 18: Contar cuántos empleados empiezan o terminan con consonante su nombre**
+```sql
+SELECT COUNT(*) AS total_consonante_inicio_o_fin
+FROM empleados_xml e,
+     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
+              COLUMNS nombre VARCHAR2(50) PATH 'nombre'
+             ) x
+WHERE REGEXP_LIKE(TRIM(x.nombre), '^[^AEIOUaeiouÁÉÍÓÚáéíóú]')
+   OR REGEXP_LIKE(TRIM(x.nombre), '[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
+```
+```text
+TOTAL_CONSONANTE_INICIO_O_FIN
+-----------------------------
+                            9
+```
+*Explicación:* Se usa `XMLTable` para extraer los nombres del documento XML y `REGEXP_LIKE` con un `OR` para capturar nombres que cumplan al menos una condición. Los 9 empleados califican ya que todos inician con consonante (Jesús=J, Guadalupe=G, Julia=J, Mario=M, Rogelio=R, Bruce=B, Laura=L, Sandra=S, Guadalupe=G). Se incluyen las vocales acentuadas (ÁÉÍÓÚáéíóú) en la exclusión para manejar correctamente nombres en español.
+
+**Actividad 19: Contar cuántos empleados empiezan y terminan con consonante su nombre**
+```sql
+SELECT COUNT(*) AS total_consonante_inicio_y_fin
+FROM empleados_xml e,
+     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
+              COLUMNS nombre VARCHAR2(50) PATH 'nombre'
+             ) x
+WHERE REGEXP_LIKE(TRIM(x.nombre), '^[^AEIOUaeiouÁÉÍÓÚáéíóú].*[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
+```
+```text
+TOTAL_CONSONANTE_INICIO_Y_FIN
+-----------------------------
+                            1
+```
+*Explicación:* A diferencia de la anterior, aquí se exige que ambas condiciones se cumplan simultáneamente en una sola expresión regular. Solo **Jesús** (J...s) cumple, ya que es el único nombre que tanto empieza como termina con consonante.
+
+**Actividad 20: Mostrar el NSS de los empleados cuyo nombre termina con consonante**
+```sql
+SELECT x.nss, x.nombre
+FROM empleados_xml e,
+     XMLTable('/empleados/empleado' PASSING e.OBJECT_VALUE
+              COLUMNS
+                nss VARCHAR2(20) PATH '@NSS',
+                nombre VARCHAR2(50) PATH 'nombre'
+             ) x
+WHERE REGEXP_LIKE(TRIM(x.nombre), '[^AEIOUaeiouÁÉÍÓÚáéíóú]$');
+```
+```text
+NSS                  NOMBRE
+-------------------- --------------------------------------------------
+777888999            Jesús
+```
+*Explicación:* Se proyecta el NSS (identificador del empleado en el XML, definido como atributo `@NSS`) junto con el nombre. Solo **Jesús** termina en consonante ('s').
 
