@@ -10,3 +10,4 @@ Bienvenido al portafolio de prácticas.
 ## Índice de Prácticas
 
 - [Práctica 2: XML y Oracle XDB](/practica2)
+- [Práctica 3: MongoDB y JSON Schema](/practica3)
