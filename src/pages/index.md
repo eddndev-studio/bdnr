@@ -11,3 +11,4 @@ Bienvenido al portafolio de prácticas.
 
 - [Práctica 2: XML y Oracle XDB](/practica2)
 - [Práctica 3: MongoDB y JSON Schema](/practica3)
+- [Práctica 4: MonetDB y bases orientadas a columnas](/practica4)
