@@ -1,0 +1,83 @@
+.venv/bin/python scripts/analisis_censo.py
+WARNING: Using incubator modules: jdk.incubator.vector
+WARNING: package sun.security.action not in java.base
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/09/29 11:18:12 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+=== Esquema inferido ===
+root
+ |-- age: integer (nullable = true)
+ |-- workclass: string (nullable = true)
+ |-- fnlwgt: integer (nullable = true)
+ |-- education: string (nullable = true)
+ |-- educational-num: integer (nullable = true)
+ |-- marital-status: string (nullable = true)
+ |-- occupation: string (nullable = true)
+ |-- relationship: string (nullable = true)
+ |-- race: string (nullable = true)
+ |-- gender: string (nullable = true)
+ |-- capital-gain: integer (nullable = true)
+ |-- capital-loss: integer (nullable = true)
+ |-- hours-per-week: integer (nullable = true)
+ |-- native-country: string (nullable = true)
+ |-- income: string (nullable = true)
+
+Total de registros: 48842
+
+=== Diez ocupaciones más frecuentes ===
++-----------------+-----+
+|occupation       |count|
++-----------------+-----+
+|Prof-specialty   |6172 |
+|Craft-repair     |6112 |
+|Exec-managerial  |6086 |
+|Adm-clerical     |5611 |
+|Sales            |5504 |
+|Other-service    |4923 |
+|Machine-op-inspct|3022 |
+|?                |2809 |
+|Transport-moving |2355 |
+|Handlers-cleaners|2072 |
++-----------------+-----+
+
+
+=== Promedio de horas semanales por género ===
++------+-------------------+-----------------+
+|gender|registros_con_horas|horas_promedio   |
++------+-------------------+-----------------+
+|Female|16192              |36.40069169960474|
+|Male  |32650              |42.41684532924962|
++------+-------------------+-----------------+
+
+
+=== Personas con native-country = Mexico: 951 ===
++---+-----------+------------+-----------------+------+--------------+--------------+------+
+|age|workclass  |education   |occupation       |gender|hours-per-week|native-country|income|
++---+-----------+------------+-----------------+------+--------------+--------------+------+
+|39 |Private    |7th-8th     |Craft-repair     |Male  |40            |Mexico        |<=50K |
+|38 |Private    |9th         |Exec-managerial  |Male  |54            |Mexico        |<=50K |
+|30 |Private    |HS-grad     |Machine-op-inspct|Male  |40            |Mexico        |<=50K |
+|21 |Private    |5th-6th     |Machine-op-inspct|Male  |38            |Mexico        |<=50K |
+|52 |Private    |1st-4th     |Machine-op-inspct|Male  |40            |Mexico        |<=50K |
+|31 |Private    |5th-6th     |Other-service    |Male  |40            |Mexico        |<=50K |
+|45 |?          |HS-grad     |?                |Female|40            |Mexico        |<=50K |
+|41 |Private    |7th-8th     |Craft-repair     |Male  |40            |Mexico        |<=50K |
+|42 |Federal-gov|10th        |Adm-clerical     |Male  |40            |Mexico        |<=50K |
+|39 |Private    |7th-8th     |Other-service    |Male  |40            |Mexico        |<=50K |
+|39 |Private    |9th         |Craft-repair     |Male  |55            |Mexico        |<=50K |
+|32 |Private    |5th-6th     |Other-service    |Male  |40            |Mexico        |<=50K |
+|39 |Private    |HS-grad     |Machine-op-inspct|Male  |40            |Mexico        |<=50K |
+|31 |Private    |Some-college|Farming-fishing  |Male  |40            |Mexico        |<=50K |
+|35 |Private    |HS-grad     |Machine-op-inspct|Male  |40            |Mexico        |<=50K |
+|24 |Private    |5th-6th     |Handlers-cleaners|Male  |40            |Mexico        |<=50K |
+|31 |Private    |HS-grad     |Sales            |Female|40            |Mexico        |<=50K |
+|39 |Private    |HS-grad     |Machine-op-inspct|Female|40            |Mexico        |<=50K |
+|31 |Private    |Bachelors   |Adm-clerical     |Female|25            |Mexico        |<=50K |
+|21 |Private    |Preschool   |Farming-fishing  |Male  |25            |Mexico        |<=50K |
++---+-----------+------------+-----------------+------+--------------+--------------+------+
+only showing top 20 rows
+
+CSV de ocupaciones: /home/eddndev/Documents/ESCOM/BD/02-introduccion-apache-spark/resultados/Reporte_Ocupaciones_Eduardo_Alonso_Sanchez
+Resumen verificable: /home/eddndev/Documents/ESCOM/BD/02-introduccion-apache-spark/resultados/resumen.json

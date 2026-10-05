@@ -3,9 +3,10 @@ import '../styles/global.css';
 
 interface Props {
 	title?: string;
+	frontmatter?: { title?: string };
 }
 
-const { title = "Reporte BDNR - Práctica 2" } = Astro.props;
+const title = Astro.props.title ?? Astro.props.frontmatter?.title ?? "Portafolio de prácticas - BDNR y Big Data";
 ---
 
 <!doctype html>

@@ -89,7 +89,9 @@
 }
 
 .prose h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.03em;
@@ -137,6 +139,7 @@
 
 .prose a {
   color: var(--color-accent);
+  overflow-wrap: anywhere;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -167,6 +170,7 @@
 }
 
 .prose code:not(pre code) {
+  overflow-wrap: anywhere;
   background: #1e1e28;
   color: var(--color-accent);
   padding: 0.15em 0.45em;
@@ -202,13 +206,15 @@
 }
 
 .prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   font-size: 0.86rem;
   border: 1px solid #3a3a42;
   border-radius: 6px;
-  overflow: hidden;
 }
 
 .prose th {

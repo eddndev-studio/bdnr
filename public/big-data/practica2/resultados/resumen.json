@@ -1,0 +1,140 @@
+{
+  "fuente": "https://github.com/saravrajavelu/Adult-Income-Analysis/blob/master/adult.csv",
+  "sha256": "1f13ee2bf9d7c66098429281ab91fa1b51cbabd3b805cc365b3c6b44491ea2c0",
+  "spark_version": "4.2.0",
+  "registros": 48842,
+  "columnas": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "educational-num",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "gender",
+    "capital-gain",
+    "capital-loss",
+    "hours-per-week",
+    "native-country",
+    "income"
+  ],
+  "esquema": [
+    {
+      "columna": "age",
+      "tipo": "int"
+    },
+    {
+      "columna": "workclass",
+      "tipo": "string"
+    },
+    {
+      "columna": "fnlwgt",
+      "tipo": "int"
+    },
+    {
+      "columna": "education",
+      "tipo": "string"
+    },
+    {
+      "columna": "educational-num",
+      "tipo": "int"
+    },
+    {
+      "columna": "marital-status",
+      "tipo": "string"
+    },
+    {
+      "columna": "occupation",
+      "tipo": "string"
+    },
+    {
+      "columna": "relationship",
+      "tipo": "string"
+    },
+    {
+      "columna": "race",
+      "tipo": "string"
+    },
+    {
+      "columna": "gender",
+      "tipo": "string"
+    },
+    {
+      "columna": "capital-gain",
+      "tipo": "int"
+    },
+    {
+      "columna": "capital-loss",
+      "tipo": "int"
+    },
+    {
+      "columna": "hours-per-week",
+      "tipo": "int"
+    },
+    {
+      "columna": "native-country",
+      "tipo": "string"
+    },
+    {
+      "columna": "income",
+      "tipo": "string"
+    }
+  ],
+  "ocupaciones_top10": [
+    {
+      "occupation": "Prof-specialty",
+      "count": 6172
+    },
+    {
+      "occupation": "Craft-repair",
+      "count": 6112
+    },
+    {
+      "occupation": "Exec-managerial",
+      "count": 6086
+    },
+    {
+      "occupation": "Adm-clerical",
+      "count": 5611
+    },
+    {
+      "occupation": "Sales",
+      "count": 5504
+    },
+    {
+      "occupation": "Other-service",
+      "count": 4923
+    },
+    {
+      "occupation": "Machine-op-inspct",
+      "count": 3022
+    },
+    {
+      "occupation": "?",
+      "count": 2809
+    },
+    {
+      "occupation": "Transport-moving",
+      "count": 2355
+    },
+    {
+      "occupation": "Handlers-cleaners",
+      "count": 2072
+    }
+  ],
+  "horas_por_genero": [
+    {
+      "gender": "Female",
+      "registros_con_horas": 16192,
+      "horas_promedio": 36.40069169960474
+    },
+    {
+      "gender": "Male",
+      "registros_con_horas": 32650,
+      "horas_promedio": 42.41684532924962
+    }
+  ],
+  "registros_mexico": 951
+}
